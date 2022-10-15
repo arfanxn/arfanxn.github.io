@@ -24,12 +24,9 @@ $(function () {
 	});
 
 	/**
-	 * Project Carousel Modules
+	 * Project Carousel Configuration
 	 */
 	let projectCarousel = $(".project-carousel").owlCarousel({
-		autoplay: true,
-		autoplayTimeout: 5000,
-		autoplayHoverPause: false,
 		loop: true,
 		margin: 20,
 		nav: false,
@@ -52,7 +49,7 @@ $(function () {
 	$(".project-carousel-next-btn").click(function () {
 		projectCarousel.trigger("next.owl.carousel", [300]);
 	});
-	// End of Project Carousel Modules
+	// End of Project Carousel Configuration
 
 	$(".navbar-nav a").on("click", function () {
 		$(".navbar-collapse").removeClass("show");
