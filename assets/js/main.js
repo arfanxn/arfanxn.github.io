@@ -28,7 +28,7 @@ $(function () {
 	 */
 	let projectCarousel = $(".project-carousel").owlCarousel({
 		autoplay: true,
-		autoplayTimeout: 2000,
+		autoplayTimeout: 5000,
 		autoplayHoverPause: true,
 		loop: true,
 		margin: 20,
