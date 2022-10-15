@@ -1,0 +1,106 @@
+$(function () {
+	"use strict";
+	$(window).on("load", function (event) {
+		$(".preloader").delay(500).fadeOut(500);
+	});
+	$(window).on("scroll", function (event) {
+		var scroll = $(window).scrollTop();
+		if (scroll < 20) {
+			$(".header_navbar").removeClass("sticky");
+		} else {
+			$(".header_navbar").addClass("sticky");
+		}
+	});
+	var scrollLink = $(".page-scroll");
+	$(window).scroll(function () {
+		var scrollbarLocation = $(this).scrollTop();
+		scrollLink.each(function () {
+			var sectionOffset = $(this.hash).offset().top - 73;
+			if (sectionOffset <= scrollbarLocation) {
+				$(this).parent().addClass("active");
+				$(this).parent().siblings().removeClass("active");
+			}
+		});
+	});
+
+	/**
+	 * Project Carousel Modules
+	 */
+	let projectCarousel = $(".project-carousel").owlCarousel({
+		autoplay: true,
+		autoplayTimeout: 2000,
+		autoplayHoverPause: true,
+		loop: true,
+		margin: 20,
+		nav: false,
+		lazyLoad: true,
+		responsive: {
+			0: {
+				items: 1,
+			},
+			600: {
+				items: 2,
+			},
+			1000: {
+				items: 2,
+			},
+		},
+	});
+	$(".project-carousel-prev-btn").click(function () {
+		projectCarousel.trigger("prev.owl.carousel", [300]);
+	});
+	$(".project-carousel-next-btn").click(function () {
+		projectCarousel.trigger("next.owl.carousel", [300]);
+	});
+	// End of Project Carousel Modules
+
+	$(".navbar-nav a").on("click", function () {
+		$(".navbar-collapse").removeClass("show");
+	});
+	$(".navbar-toggler").on("click", function () {
+		$(this).toggleClass("active");
+	});
+	$(".navbar-nav a").on("click", function () {
+		$(".navbar-toggler").removeClass("active");
+	});
+	if ($(".progress_line").length) {
+		$(".progress_line").appear(
+			function () {
+				var el = $(this);
+				var percent = el.data("width");
+				$(el).css("width", percent + "%");
+			},
+			{ accY: 0 }
+		);
+	}
+	$(".counter").counterUp({ delay: 10, time: 1600 });
+	$(window).on("scroll", function (event) {
+		if ($(this).scrollTop() > 600) {
+			$(".back-to-top").fadeIn(200);
+		} else {
+			$(".back-to-top").fadeOut(200);
+		}
+	});
+	$(".back-to-top").on("click", function (event) {
+		event.preventDefault();
+		$("html, body").animate({ scrollTop: 0 }, 1500);
+	});
+	/*
+	$(".testimonial_active").slick({
+		dots: true,
+		infinite: true,
+		arrows: false,
+		speed: 800,
+		slidesToShow: 2,
+		slidesToScroll: 1,
+		responsive: [
+			{ breakpoint: 1200, settings: { slidesToShow: 2 } },
+			{ breakpoint: 992, settings: { slidesToShow: 1 } },
+			{ breakpoint: 768, settings: { slidesToShow: 1 } },
+			{ breakpoint: 576, settings: { slidesToShow: 1 } },
+		],
+	});
+	*/
+	var wow = new WOW({ boxClass: "wow", mobile: false });
+	wow.init();
+});
